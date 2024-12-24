@@ -1,25 +1,29 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
+import {BoardService} from "./board.service";
 
 @Controller('board')
 export class BoardController {
+    constructor(
+        private readonly boardService: BoardService) {
+    }
 
     @Get()
     findAll() {
-        return 'findAll';
+        return this.boardService.findAll();
     }
 
     @Get(':id')
     find(
         @Param('id') id: number
     ) {
-        return `find id:${id}`;
+        return this.boardService.find(Number(id));
     }
 
     @Post()
     create(
-        @Body() data:any
+        @Body() data
     ) {
-        return 'create new board';
+        return this.boardService.create(data);
     }
 
     @Put(':id')

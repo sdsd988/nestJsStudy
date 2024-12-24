@@ -1,7 +1,18 @@
+import { BoardService } from "./board.service";
 export declare class BoardController {
-    findAll(): string;
-    find(id: number): string;
-    create(data: any): string;
+    private readonly boardService;
+    constructor(boardService: BoardService);
+    findAll(): {
+        id: number;
+        title: string;
+        content: string;
+    }[];
+    find(id: number): {
+        id: number;
+        title: string;
+        content: string;
+    };
+    create(data: any): any;
     update(id: number, data: any): string;
     remove(id: number): string;
 }

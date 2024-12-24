@@ -14,15 +14,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoardController = void 0;
 const common_1 = require("@nestjs/common");
+const board_service_1 = require("./board.service");
 let BoardController = class BoardController {
+    constructor(boardService) {
+        this.boardService = boardService;
+    }
     findAll() {
-        return 'findAll';
+        return this.boardService.findAll();
     }
     find(id) {
-        return `find id:${id}`;
+        return this.boardService.find(Number(id));
     }
     create(data) {
-        return 'create new board';
+        return this.boardService.create(data);
     }
     update(id, data) {
         return 'update board';
@@ -68,6 +72,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BoardController.prototype, "remove", null);
 exports.BoardController = BoardController = __decorate([
-    (0, common_1.Controller)('board')
+    (0, common_1.Controller)('board'),
+    __metadata("design:paramtypes", [board_service_1.BoardService])
 ], BoardController);
 //# sourceMappingURL=board.controller.js.map
