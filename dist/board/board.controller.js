@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoardController = void 0;
 const common_1 = require("@nestjs/common");
 const board_service_1 = require("./board.service");
+const swagger_1 = require("@nestjs/swagger");
 let BoardController = class BoardController {
     constructor(boardService) {
         this.boardService = boardService;
@@ -29,10 +30,10 @@ let BoardController = class BoardController {
         return this.boardService.create(data);
     }
     update(id, data) {
-        return 'update board';
+        return this.boardService.update(Number(id), data);
     }
     remove(id) {
-        return 'delete';
+        return this.boardService.delete(Number(id));
     }
 };
 exports.BoardController = BoardController;
@@ -73,6 +74,7 @@ __decorate([
 ], BoardController.prototype, "remove", null);
 exports.BoardController = BoardController = __decorate([
     (0, common_1.Controller)('board'),
+    (0, swagger_1.ApiTags)('Board'),
     __metadata("design:paramtypes", [board_service_1.BoardService])
 ], BoardController);
 //# sourceMappingURL=board.controller.js.map

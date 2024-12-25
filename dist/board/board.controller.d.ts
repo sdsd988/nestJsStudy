@@ -13,6 +13,10 @@ export declare class BoardController {
         content: string;
     };
     create(data: any): any;
-    update(id: number, data: any): string;
-    remove(id: number): string;
+    update(id: number, data: any): any;
+    remove(id: number): {
+        id: number;
+        title: string;
+        content: string;
+    };
 }

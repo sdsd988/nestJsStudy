@@ -1,7 +1,9 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {BoardService} from "./board.service";
+import {ApiTags} from "@nestjs/swagger";
 
 @Controller('board')
+@ApiTags('Board')
 export class BoardController {
     constructor(
         private readonly boardService: BoardService) {
@@ -31,12 +33,12 @@ export class BoardController {
         @Param('id') id: number,
         @Body() data:any,
     ) {
-        return 'update board';
+        return this.boardService.update(Number(id),data);
     }
 
     @Delete(':id')
     remove(@Param('id') id: number) {
-        return 'delete';
+        return this.boardService.delete(Number(id));
     }
 
 }
