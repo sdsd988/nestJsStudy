@@ -13,7 +13,11 @@ export declare class BoardController {
         title: string;
         content: string;
     };
-    create(data: CreateBoardDto): any;
+    create(data: CreateBoardDto): {
+        title: string;
+        content: string;
+        id: number;
+    };
     update(id: number, data: any): any;
     remove(id: number): {
         id: number;
