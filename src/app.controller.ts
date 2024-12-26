@@ -1,16 +1,22 @@
-import {Controller, Get, Param, Query} from '@nestjs/common';
+import {Controller, Get, HttpException, HttpStatus, Logger, Param, Query} from '@nestjs/common';
 import { AppService } from './app.service';
 import {Ip} from "./decorators/ip.decorator";
+import {ConfigService} from "@nestjs/config";
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+      private readonly appService: AppService,
+      private readonly configService: ConfigService
+  ) {}
+
+  private readonly logger = new Logger();
 
   @Get()
   getHello(
       @Ip() ip: string,
   ): string {
-    console.log(ip);
+    console.log(this.configService.get('ENVIRONMENT'));
     return this.appService.getHello();
   }
 
