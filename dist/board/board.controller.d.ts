@@ -1,4 +1,5 @@
 import { BoardService } from "./board.service";
+import { CreateBoardDto } from "./dto/create-board.dto";
 export declare class BoardController {
     private readonly boardService;
     constructor(boardService: BoardService);
@@ -12,7 +13,7 @@ export declare class BoardController {
         title: string;
         content: string;
     };
-    create(data: any): any;
+    create(data: CreateBoardDto): any;
     update(id: number, data: any): any;
     remove(id: number): {
         id: number;
