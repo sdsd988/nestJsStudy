@@ -1,0 +1,31 @@
+GET http://localhost:3000/board
+
+###
+
+GET http://localhost:3000/board/1
+
+###
+POST http://localhost:3000/board
+content-type: application/json
+
+{
+"title": "create Test1",
+"content": "content 11"
+}
+
+###
+
+PUT http://localhost:3000/board/6
+content-type: application/json
+
+{
+  "title": "FastCampus New"
+}
+
+###
+
+DELETE http://localhost:3000/board/1
+
+###
+
+GET localhost:3000

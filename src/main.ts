@@ -1,10 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
+import {ValidationPipe} from "@nestjs/common";
+import {HttpExceptionFilters} from "./exceptions/http.exceptions";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.useGlobalFilters(new HttpExceptionFilters);
   const config = new DocumentBuilder()
       .setTitle('Cats example')
       .setDescription('The cats API description')

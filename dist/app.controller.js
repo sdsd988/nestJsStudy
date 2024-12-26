@@ -15,11 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const ip_decorator_1 = require("./decorators/ip.decorator");
+const config_1 = require("@nestjs/config");
 let AppController = class AppController {
-    constructor(appService) {
+    constructor(appService, configService) {
         this.appService = appService;
+        this.configService = configService;
+        this.logger = new common_1.Logger();
     }
-    getHello() {
+    getHello(ip) {
+        console.log(this.configService.get('ENVIRONMENT'));
         return this.appService.getHello();
     }
     getName(name) {
@@ -29,8 +34,9 @@ let AppController = class AppController {
 exports.AppController = AppController;
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, ip_decorator_1.Ip)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
 __decorate([
@@ -42,6 +48,7 @@ __decorate([
 ], AppController.prototype, "getName", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [app_service_1.AppService])
+    __metadata("design:paramtypes", [app_service_1.AppService,
+        config_1.ConfigService])
 ], AppController);
 //# sourceMappingURL=app.controller.js.map
